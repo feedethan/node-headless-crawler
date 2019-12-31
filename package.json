@@ -1,7 +1,7 @@
 {
   "name": "headless-crawler",
   "description": "node crawler 爬虫",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "main": "src/mn.js",
   "bin": {
     "crawler": "bin/crawler"
