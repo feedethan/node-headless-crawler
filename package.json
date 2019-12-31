@@ -1,5 +1,29 @@
 {
+  "name": "headless-crawler",
+  "description": "node crawler 爬虫",
+  "version": "1.0.0",
+  "main": "src/mn.js",
+  "bin": {
+    "crawler": "bin/crawler"
+  },
   "dependencies": {
+    "commander": "^4.0.1",
     "puppeteer": "^2.0.0"
-  }
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node ./src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lsfcode/headless-crawler.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lsfcode/headless-crawler/issues"
+  },
+  "homepage": "https://github.com/lsfcode/headless-crawler#readme"
 }
