@@ -1,5 +1,8 @@
 node_modules/
 screenshot/*.png
+mn/*.png
+mn/*.jpg
+mn/*.gif
 .idea/
 .vscode/
 dist/
