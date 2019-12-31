@@ -7,6 +7,7 @@ const srcToImg = require("./helper/srcToImg");
  */
 class Crawler {
   constructor(config) {
+    console.log(JSON.stringify(conf));
     this.conf = Object.assign({}, conf, config);
   }
 
