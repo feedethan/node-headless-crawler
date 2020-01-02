@@ -3,8 +3,16 @@ node crawler 百度图片爬虫
 
 # install
 ```
-npm i x -g
+sudo cnpm i node-crawler-lsf -g  // 推荐
+
 ```
+
+
+# usage
+```
+crawler -i 狗 -d /Desktop/abc
+```
+
 
 # dev
 ```
@@ -13,11 +21,6 @@ bin/crawler -i xxx
 bin/crawler -h
 npm start
 node src/index.js
-```
-
-# usage
-```
-crawler -i xxx -d /Desktop/abc
 ```
 
 # todo

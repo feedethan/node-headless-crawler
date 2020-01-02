@@ -1,7 +1,7 @@
 {
   "name": "node-crawler-lsf",
   "description": "node crawler 爬虫",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "main": "src/mn.js",
   "bin": {
     "crawler": "bin/crawler"
