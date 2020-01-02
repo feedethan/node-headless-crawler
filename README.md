@@ -17,9 +17,10 @@ node src/index.js
 
 # usage
 ```
-crawler -i xxx
+crawler -i xxx -d /Desktop/abc
 ```
 
 # todo
-
-优化chrome内核 可配置目录 创建目录
+- [x] 可配置目录
+- [x] 创建目录
+ 

@@ -1,20 +1,21 @@
+const fs = require("fs");
 const puppeteer = require("puppeteer");
 const conf = require("./config/default");
 const srcToImg = require("./helper/srcToImg");
-
+const { logError, logWarn, logSuc } = require("./helper/log");
 /**
  * 获取百度图片
  */
 class Crawler {
   constructor(config) {
-    console.log(JSON.stringify(conf));
+    // console.log(JSON.stringify(conf));
     this.conf = Object.assign({}, conf, config);
   }
 
   start() {
     (async () => {
-      const browser = await puppeteer.launch({ headless: false });
-      // const browser = await puppeteer.launch();
+      // const browser = await puppeteer.launch({ headless: false });
+      const browser = await puppeteer.launch();
       const page = await browser.newPage();
       await page.setViewport({
         width: 1920,
@@ -24,12 +25,12 @@ class Crawler {
       const url = "https://image.baidu.com";
       // const keyword = "狗";
       await page.goto(url);
-      console.log(`go to ${url}`);
+      logSuc(`go to ${url}`);
       // input获取焦点
       await page.focus("#kw");
       // input输入字符
       await page.keyboard.sendCharacter(this.conf.keyword);
-      console.log(`输入 ${this.conf.keyword}`);
+      logSuc(`输入 ${this.conf.keyword}, 输出目录 ${this.conf.dir}`);
       // 触发元素点击
       await page.click(".s_search");
       // js加载完以后
@@ -39,23 +40,23 @@ class Crawler {
           const images = document.querySelectorAll("img.main_img");
           return Array.prototype.map.call(images, img => img.src);
         });
-        console.log(`get ${srcs.length} imgs`);
+        logSuc(`get ${srcs.length} imgs`);
+        fs.mkdir(this.conf.dir, { recursive: true }, err => {
+          if (err) throw err;
+        });
         srcs.forEach(async src => {
           // 降低频率防止反爬虫
           await page.waitFor(1000);
-          if (/\.(jpg|png|gif)$/.test(src)) {
-            console.log(src, this.conf.mn);
-          }
+          // if (/\.(jpg|png|gif)$/.test(src)) {
+          //   console.log(src, this.conf.dir);
+          // }
 
-          srcToImg(src, this.conf.mn);
+          srcToImg(src, this.conf.dir);
         });
         await browser.close();
       });
-
-      
     })();
   }
 }
 
 module.exports = Crawler;
-

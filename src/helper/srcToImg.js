@@ -2,6 +2,7 @@ const http = require("http");
 const https = require("https");
 const fs = require("fs");
 const path = require("path");
+const { logError, logWarn, logSuc } = require("./log");
 const { promisify } = require("util");
 const writeFile = promisify(fs.writeFile);
 module.exports = async (src, dir) => {
@@ -25,7 +26,7 @@ const urlToImg = promisify((url, dir, callback) => {
   mod.get(url, res => {
     res.pipe(fs.createWriteStream(file)).on("finish", () => {
       callback();
-      console.log(`finish ${file}`);
+      logSuc(`获取 ${file}`);
     });
   });
 });
@@ -37,6 +38,6 @@ const base64ToImg = async (base64Str, img) => {
     const file = path.join(dir, `${dir}.${ext}`);
     await writeFile(file, matchs[2], "base64");
   } catch (ex) {
-    console.log("非法base64");
+    logWarn("非法base64");
   }
 };
